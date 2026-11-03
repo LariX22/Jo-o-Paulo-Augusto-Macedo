@@ -32,6 +32,40 @@ function ChipList({ items }) {
 
 const roleIcons = [<LayoutDashboard size={16} />, <CalendarClock size={16} />, <DraftingCompass size={16} />, <Ruler size={16} />]
 
+function gearPath(teeth, outer, inner) {
+  const points = []
+  const step = (Math.PI * 2) / teeth
+  for (let i = 0; i < teeth; i += 1) {
+    const a = i * step
+    ;[[-0.32, inner], [-0.2, outer], [0.2, outer], [0.32, inner]].forEach(([o, r]) => {
+      points.push(`${(50 + r * Math.cos(a + o * step * 2)).toFixed(2)},${(50 + r * Math.sin(a + o * step * 2)).toFixed(2)}`)
+    })
+  }
+  return `M${points.join('L')}Z`
+}
+
+const gearLayout = [
+  { cls: 'bg-gear-a', teeth: 14, dir: 1, speed: 0.12 },
+  { cls: 'bg-gear-b', teeth: 10, dir: -1, speed: 0.17 },
+  { cls: 'bg-gear-c', teeth: 18, dir: -1, speed: 0.09 },
+  { cls: 'bg-gear-d', teeth: 12, dir: 1, speed: 0.14 },
+]
+
+function GearBackground() {
+  return (
+    <div className="gear-bg" aria-hidden="true">
+      {gearLayout.map(({ cls, teeth, dir, speed }) => (
+        <div className={`bg-gear ${cls}`} key={cls} data-dir={dir} data-speed={speed}>
+          <svg viewBox="0 0 100 100" focusable="false">
+            <path d={gearPath(teeth, 48, 40)} />
+            <circle cx="50" cy="50" r="12" />
+            <circle cx="50" cy="50" r="28" className="bg-gear-ring" />
+          </svg>
+        </div>
+      ))}
+    </div>
+  )
+}
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [progress, setProgress] = useState(0)
@@ -56,8 +90,21 @@ function App() {
       setProgress(max > 0 ? (window.scrollY / max) * 100 : 0)
       setShowTop(window.scrollY > 560)
     }
+    const gears = [...document.querySelectorAll('.bg-gear')]
+    let frame = 0
+    const spinGears = () => {
+      frame = 0
+      gears.forEach(gear => {
+        gear.style.setProperty('--spin', `${window.scrollY * Number(gear.dataset.speed) * Number(gear.dataset.dir)}deg`)
+      })
+    }
+    const onScroll = () => {
+      updateScroll()
+      if (!frame) frame = requestAnimationFrame(spinGears)
+    }
     updateScroll()
-    window.addEventListener('scroll', updateScroll, { passive: true })
+    spinGears()
+    window.addEventListener('scroll', onScroll, { passive: true })
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -70,7 +117,8 @@ function App() {
     document.querySelectorAll('.reveal').forEach(element => observer.observe(element))
 
     return () => {
-      window.removeEventListener('scroll', updateScroll)
+      window.removeEventListener('scroll', onScroll)
+      cancelAnimationFrame(frame)
       observer.disconnect()
     }
   }, [])
@@ -79,6 +127,7 @@ function App() {
 
   return (
     <>
+      <GearBackground />
       <div className="reading-progress" style={{ transform: `scaleX(${progress / 100})` }} />
       <header className="site-header">
         <a className="brand" href="#inicio" aria-label="João Paulo Macedo — início" onClick={closeMenu}>
