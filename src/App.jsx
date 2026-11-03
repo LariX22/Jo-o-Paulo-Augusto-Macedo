@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import {
   ArrowDown, ArrowDownToLine, ArrowRight, ArrowUp, BarChart3, BriefcaseBusiness,
-  Boxes, Check, ChevronDown, Cog, Cpu, GraduationCap, Layers3, Linkedin, Mail, MapPin,
+  Check, ChevronDown, Cog, Cpu, GraduationCap, Layers3, Linkedin, Mail, MapPin,
   Menu, Phone, ShieldCheck, Sparkles, Wrench, X,
 } from 'lucide-react'
 import {
@@ -66,7 +66,7 @@ function App() {
       <div className="reading-progress" style={{ transform: `scaleX(${progress / 100})` }} />
       <header className="site-header">
         <a className="brand" href="#inicio" aria-label="João Paulo Macedo — início" onClick={closeMenu}>
-          <span className="brand-mark">J<span>.</span></span>
+          <span className="brand-mark">JP<span>.</span></span>
           <span className="brand-copy">JOÃO PAULO<span>ENGENHARIA & GESTÃO</span></span>
         </a>
         <button className="menu-toggle" aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
@@ -80,46 +80,41 @@ function App() {
 
       <main>
         <section className="hero" id="inicio">
-          <div className="hero-blueprint" aria-hidden="true" />
+          <div className="hero-grain" aria-hidden="true" />
           <div className="hero-inner">
             <div className="hero-copy">
-              <div className="availability"><span /> ENGENHARIA · MANUTENÇÃO · MINERAÇÃO</div>
+              <div className="availability"><span /> TRAJETÓRIA PROFISSIONAL · MINERAÇÃO</div>
               <h1>João Paulo<br /><span>Augusto Macedo</span></h1>
               <p className="hero-role">Engenharia de Manutenção <i /> Confiabilidade <i /> Gestão de Ativos <i /> PCM</p>
-              <p className="hero-intro">Uma trajetória que integra projetos industriais, planejamento da manutenção, confiabilidade, gestão de ativos e transformação digital.</p>
+              <p className="hero-intro">Mais de 20 anos de experiência industrial, conectando projetos, manutenção e confiabilidade para apoiar a evolução das operações.</p>
               <div className="hero-actions">
-                <a className="button button-primary" href="#perfil">Conheça minha trajetória <ArrowRight size={17} /></a>
-                <a className="button button-outline" href={resumeUrl} target="_blank" rel="noreferrer">Abrir currículo PDF <ArrowDownToLine size={17} /></a>
+                <a className="button button-primary" href="#experiencia">Ver trajetória profissional <ArrowRight size={17} /></a>
+                <a className="button button-outline" href={resumeUrl} target="_blank" rel="noreferrer">Currículo executivo <ArrowDownToLine size={17} /></a>
               </div>
               <div className="hero-location"><MapPin size={15} />{profile.location}</div>
             </div>
-            <div className="hero-visual" aria-label="Diagrama das áreas de experiência e espaço reservado para fotografia profissional">
-              <div className="competency-map">
-                <div className="map-orbit map-orbit-outer" />
-                <div className="map-orbit map-orbit-inner" />
-                <div className="map-gear map-gear-large"><Cog aria-hidden="true" /></div>
-                <div className="map-gear map-gear-small"><Cog aria-hidden="true" /></div>
-                <span className="map-node node-pcm"><span>01</span> PCM & PLANEJAMENTO</span>
-                <span className="map-node node-reliability"><span>02</span> CONFIABILIDADE</span>
-                <span className="map-node node-assets"><Boxes aria-hidden="true" /><span>GESTÃO DE ATIVOS</span></span>
-                <span className="map-node node-intelligence"><BarChart3 aria-hidden="true" /><span>BUSINESS INTELLIGENCE</span></span>
-                <div className="portrait-frame">
+            <div className="hero-visual" aria-label="Linha do tempo da experiência profissional e espaço reservado para fotografia profissional">
+              <div className="career-board">
+                <div className="career-board-head">
+                  <div><span className="board-kicker">PERCURSO</span><h2>Experiência<br />em movimento.</h2></div>
+                  <div className="portrait-frame">
                   <div className="portrait-grid" />
                   <span className="portrait-corner corner-tl" /><span className="portrait-corner corner-br" />
-                  <div className="portrait-monogram">J<span>.</span></div>
-                  <div className="portrait-caption"><span className="portrait-caption-line" /> ESPAÇO PARA<br />FOTOGRAFIA PROFISSIONAL</div>
+                  <div className="portrait-monogram">JP<span>.</span></div>
+                  <div className="portrait-caption">FOTO<br />PROFISSIONAL</div>
+                  </div>
+                </div>
+                <div className="career-route">
+                  <article className="route-stop"><span className="route-dot"><Cog size={14} /></span><span className="route-period">2003 — 2008</span><b>Técnico Industrial / Estagiário</b><small>CFM – Companhia de Fomento Mineral</small></article>
+                  <article className="route-stop"><span className="route-dot"><Cog size={14} /></span><span className="route-period">Abril/2008 — Agosto/2015</span><b>Técnico de Desenvolvimento III</b><small>NAMISA – Nacional Minérios S.A. / CSN</small></article>
+                  <article className="route-stop"><span className="route-dot"><Cog size={14} /></span><span className="route-period">Outubro/2016 — Outubro/2022</span><b>Programador de Manutenção Industrial</b><small>LGA Mineração e Siderurgia</small></article>
+                  <article className="route-stop route-stop-current"><span className="route-dot"><Cog size={14} /></span><span className="route-period">Outubro/2022 — Atual</span><b>Analista de Manutenção Pleno</b><small>LGA Mineração e Siderurgia</small></article>
                 </div>
               </div>
             </div>
           </div>
-          <div className="hero-credentials" aria-label="Resumo da experiência profissional">
-            <span><b>20+</b> anos de experiência industrial</span>
-            <i />
-            <span><b>10+</b> anos no setor de mineração</span>
-            <i />
-            <span>Projetos · PCM · Confiabilidade · Ativos · BI</span>
-          </div>
-          <a href="#perfil" className="scroll-hint" aria-label="Rolar para o perfil"><span>CONHEÇA A TRAJETÓRIA</span><ArrowDown size={16} /></a>
+          <div className="hero-credentials" aria-label="Resumo da experiência profissional"><span><b>20+</b> anos de experiência industrial</span><span><b>10+</b> anos no setor de mineração</span></div>
+          <a href="#perfil" className="scroll-hint" aria-label="Rolar para o perfil"><span>EXPLORE O CURRÍCULO</span><ArrowDown size={16} /></a>
         </section>
 
         <section className="section section-profile" id="perfil">
@@ -211,7 +206,7 @@ function App() {
         </section>
       </main>
 
-      <footer className="site-footer"><div className="container footer-inner"><a className="brand footer-brand" href="#inicio"><span className="brand-mark">J<span>.</span></span><span className="brand-copy">JOÃO PAULO<span>ENGENHARIA & GESTÃO</span></span></a><p>Currículo profissional · {profile.name}</p><a className="footer-top" href="#inicio">VOLTAR AO INÍCIO <ArrowUp size={14} /></a></div></footer>
+      <footer className="site-footer"><div className="container footer-inner"><a className="brand footer-brand" href="#inicio"><span className="brand-mark">JP<span>.</span></span><span className="brand-copy">JOÃO PAULO<span>ENGENHARIA & GESTÃO</span></span></a><p>Currículo profissional · {profile.name}</p><a className="footer-top" href="#inicio">VOLTAR AO INÍCIO <ArrowUp size={14} /></a></div></footer>
       <a className={`back-to-top${showTop ? ' back-to-top-visible' : ''}`} href="#inicio" aria-label="Voltar ao topo"><ArrowUp size={18} /></a>
     </>
   )
