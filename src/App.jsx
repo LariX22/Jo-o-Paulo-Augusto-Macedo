@@ -33,6 +33,11 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [progress, setProgress] = useState(0)
   const [showTop, setShowTop] = useState(false)
+  const [selectedExperience, setSelectedExperience] = useState(0)
+  const activeExperience = experiences[selectedExperience]
+  const activeResponsibilities = activeExperience.groups
+    ? activeExperience.groups.flatMap(group => group.items).slice(0, 2)
+    : activeExperience.items.slice(0, 2)
 
   useEffect(() => {
     const updateScroll = () => {
@@ -105,10 +110,27 @@ function App() {
                   </div>
                 </div>
                 <div className="career-route">
-                  <article className="route-stop"><span className="route-dot"><Cog size={14} /></span><span className="route-period">2003 — 2008</span><b>Técnico Industrial / Estagiário</b><small>CFM – Companhia de Fomento Mineral</small></article>
-                  <article className="route-stop"><span className="route-dot"><Cog size={14} /></span><span className="route-period">Abril/2008 — Agosto/2015</span><b>Técnico de Desenvolvimento III</b><small>NAMISA – Nacional Minérios S.A. / CSN</small></article>
-                  <article className="route-stop"><span className="route-dot"><Cog size={14} /></span><span className="route-period">Outubro/2016 — Outubro/2022</span><b>Programador de Manutenção Industrial</b><small>LGA Mineração e Siderurgia</small></article>
-                  <article className="route-stop route-stop-current"><span className="route-dot"><Cog size={14} /></span><span className="route-period">Outubro/2022 — Atual</span><b>Analista de Manutenção Pleno</b><small>LGA Mineração e Siderurgia</small></article>
+                  {experiences.map((experience, index) => (
+                    <button
+                      className={`route-stop${selectedExperience === index ? ' route-stop-current' : ''}`}
+                      key={`${experience.company}-${experience.role}`}
+                      type="button"
+                      aria-pressed={selectedExperience === index}
+                      aria-label={`Ver experiência: ${experience.role}, ${experience.period}`}
+                      onClick={() => setSelectedExperience(index)}
+                    >
+                      <span className="route-dot"><Cog size={17} /></span>
+                      <span className="route-period">{experience.period}</span>
+                      <b>{experience.role}</b>
+                      <small>{experience.company}</small>
+                    </button>
+                  ))}
+                </div>
+                <div className="career-detail" aria-live="polite">
+                  <span className="career-detail-label">ATUAÇÃO NESTE PERÍODO</span>
+                  <h3>{activeExperience.role}</h3>
+                  <p>{activeExperience.intro}</p>
+                  <ul>{activeResponsibilities.map(item => <li key={item}>{item}</li>)}</ul>
                 </div>
               </div>
             </div>

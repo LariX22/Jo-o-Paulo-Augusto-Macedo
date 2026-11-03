@@ -357,3 +357,112 @@ a.contact-row:hover { padding-right: 6px; padding-left: 6px; background: rgba(25
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* High-contrast reading and interactive career timeline */
+:root {
+  --paper: #fff;
+  --white: #fff;
+  --ink: #171717;
+  --graphite: #242424;
+  --muted: #383838;
+  --line: #d3d3d3;
+  --accent: #763d23;
+}
+
+.hero { background: #f3f3f1; }
+.hero-grain { opacity: .14; }
+.hero h1 span, .section-title h2 em { color: #454545; }
+.availability, .hero-role, .hero-intro, .hero-location, .route-period,
+.route-stop small, .hero-credentials, .scroll-hint { color: #292929; }
+.career-board { border-color: #bdbdbd; background: #fff; }
+.career-board-head { border-color: #d0d0d0; }
+.career-board-head h2, .route-stop b { color: #171717; }
+.route-period { font-weight: 700; }
+.route-stop {
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  color: inherit;
+  background: transparent;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transition: background .18s ease, box-shadow .18s ease;
+}
+.route-stop:hover, .route-stop:focus-visible { background: #f0f0ee; }
+.route-stop:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.route-stop-current { box-shadow: inset 3px 0 var(--accent); background: #f1efed; }
+.route-stop-current b, .route-stop-current .route-period { color: #642f19; }
+.route-dot { color: #303030; }
+.route-stop-current .route-dot { color: var(--accent); }
+.career-route::before { background: #999; }
+.career-detail { margin-top: 5px; padding: 18px 0 0 18px; border-top: 1px solid #c8c8c8; }
+.career-detail-label { color: #5b2c18; font-size: 11px; font-weight: 700; letter-spacing: 1px; }
+.career-detail h3 { margin: 7px 0; color: #171717; font: 700 16px/1.4 var(--heading); }
+.career-detail p, .career-detail li { color: #303030; font-size: 13px; line-height: 1.65; }
+.career-detail p { margin: 0 0 8px; }
+.career-detail ul { margin: 0; padding-left: 18px; }
+.career-detail li + li { margin-top: 4px; }
+
+.profile-body > p:not(.profile-lead), .job-intro,
+.job-group li, .responsibility-list li, .engineering-card li,
+.engineering-card > p, .asset-items > span, .education-item p,
+.methodology-title p, .section-title > p { color: #303030; }
+.section-title h2, .profile-lead, .timeline-heading h3,
+.engineering-card h3, .asset-panel-head h3, .education-item h3 { color: #171717; }
+.section-title > p { font-size: 14px; }
+.profile-body > p:not(.profile-lead) { font-size: 14px; }
+.profile-lead { font-size: 19px; }
+.profile-facts small, .profile-aside-note, .profile-area-label { color: #303030; font-size: 11px; }
+.chip { color: #252525; border-color: #c8c8c8; font-size: 10px; }
+.section-experience, .section-engineering { background: #f0f0ee; }
+.timeline-marker { background: #f0f0ee; }
+.timeline-date { color: #642f19; }
+.company-name { color: #642f19; }
+.job-intro { font-size: 12px; }
+.job-group h4 { color: #202020; font-size: 11px; }
+.job-group li, .responsibility-list li, .engineering-card li { font-size: 11px; }
+.asset-count small, .asset-items > span { color: #292929; font-size: 11px; }
+.engineering-card > p, .engineering-card li { font-size: 11px; }
+.bi-coverage span { color: #252525; font-size: 10px; }
+.methodology-title p, .method-group h3 { color: #252525; font-size: 11px; }
+.method-group .chip, .tool-group .chip { font-size: 10px; }
+.education-item h3 { font-size: 12px; }
+.education-item p { color: #303030; font-size: 10px; }
+.education-status { color: #522b1b; border-color: #c8c8c8; font-size: 9px; }
+.tool-group h3 { color: #252525; font-size: 11px; }
+.language-row, .language-row span, .language-row b { color: #242424; font-size: 11px; }
+.site-footer { color: #303030; }
+.footer-inner > p, .footer-top { color: #292929; font-size: 10px; }
+.nav-menu > a { color: #292929; }
+.nav-menu .nav-resume { color: #202020; border-color: #777; }
+.metric-card p, .projects-heading p, .context-note { color: #f0efeb; }
+.metric-card h3 { color: #fff; }
+.metric-index { color: #e2ded6; }
+.project-card > p { color: #f0efeb; }
+.project-card .chip { color: #fff; border-color: #aaa; }
+.contact-row small { color: #f0efeb; font-size: 10px; }
+.contact-row b { color: #fff; font-size: 13px; }
+.contact-icon { color: #fff; }
+
+@media (max-width: 760px) {
+  .availability { font-size: 10px; }
+  .hero-role, .hero-intro { font-size: 13px; }
+  .hero-location, .hero-credentials, .scroll-hint { font-size: 10px; }
+  .route-period { font-size: 10px; }
+  .route-stop b { font-size: 12px; }
+  .route-stop small { font-size: 11px; }
+  .career-detail p, .career-detail li { font-size: 12px; }
+  .section-title > p { font-size: 13px; }
+  .profile-body > p:not(.profile-lead) { font-size: 13px; }
+  .profile-facts small { font-size: 10px; }
+  .metric-card h3 { font-size: 11px; }
+  .metric-card p, .project-card > p { font-size: 11px; }
+  .projects-heading p, .context-note { font-size: 10px; }
+  .timeline-date { font-size: 11px; }
+  .job-intro, .job-group li, .responsibility-list li { font-size: 11px; }
+  .asset-items > span, .engineering-card > p, .engineering-card li { font-size: 11px; }
+  .education-item h3 { font-size: 11px; }
+  .education-item p { font-size: 10px; }
+  .contact-row b { font-size: 12px; }
+}
