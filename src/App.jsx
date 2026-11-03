@@ -32,45 +32,60 @@ function ChipList({ items }) {
 
 const roleIcons = [<LayoutDashboard size={16} />, <CalendarClock size={16} />, <DraftingCompass size={16} />, <Ruler size={16} />]
 
-function gearPath(teeth, outer, inner) {
-  const points = []
+function gearPath(teeth, outer, inner, holes) {
   const step = (Math.PI * 2) / teeth
+  const pt = (angle, r) => `${(50 + r * Math.cos(angle)).toFixed(2)},${(50 + r * Math.sin(angle)).toFixed(2)}`
+  const outline = []
   for (let i = 0; i < teeth; i += 1) {
-    const a = i * step
-    ;[[-0.32, inner], [-0.2, outer], [0.2, outer], [0.32, inner]].forEach(([o, r]) => {
-      points.push(`${(50 + r * Math.cos(a + o * step * 2)).toFixed(2)},${(50 + r * Math.sin(a + o * step * 2)).toFixed(2)}`)
-    })
+    const base = i * step
+    ;[[0, inner], [0.1, outer], [0.4, outer], [0.5, inner], [0.75, inner]].forEach(([o, r]) => outline.push(pt(base + o * step, r)))
   }
-  return `M${points.join('L')}Z`
+  const circle = (cx, cy, r) => `M${cx - r},${cy}a${r},${r} 0 1,0 ${2 * r},0a${r},${r} 0 1,0 ${-2 * r},0Z`
+  let d = `M${outline.join('L')}Z${circle(50, 50, 9)}`
+  for (let i = 0; i < holes; i += 1) {
+    const angle = (i / holes) * Math.PI * 2
+    d += circle(50 + 25 * Math.cos(angle), 50 + 25 * Math.sin(angle), 6.5)
+  }
+  return d
 }
 
 const gearLayout = [
-  { cls: 'bg-gear-a', teeth: 14, dir: 1, speed: 0.12 },
-  { cls: 'bg-gear-b', teeth: 10, dir: -1, speed: 0.17 },
-  { cls: 'bg-gear-c', teeth: 18, dir: -1, speed: 0.09 },
-  { cls: 'bg-gear-d', teeth: 12, dir: 1, speed: 0.14 },
-  { cls: 'bg-gear-e', teeth: 16, dir: 1, speed: 0.11 },
-  { cls: 'bg-gear-f', teeth: 11, dir: -1, speed: 0.16 },
-  { cls: 'bg-gear-g', teeth: 20, dir: -1, speed: 0.08 },
-  { cls: 'bg-gear-h', teeth: 9, dir: 1, speed: 0.2 },
-  { cls: 'bg-gear-i', teeth: 13, dir: 1, speed: 0.13 },
+  { cls: 'bg-gear-a', teeth: 14, holes: 5, dir: 1, speed: 0.12 },
+  { cls: 'bg-gear-b', teeth: 10, holes: 4, dir: -1, speed: 0.17 },
+  { cls: 'bg-gear-c', teeth: 18, holes: 6, dir: -1, speed: 0.09 },
+  { cls: 'bg-gear-d', teeth: 12, holes: 5, dir: 1, speed: 0.14 },
+  { cls: 'bg-gear-e', teeth: 16, holes: 6, dir: 1, speed: 0.11 },
+  { cls: 'bg-gear-f', teeth: 11, holes: 5, dir: -1, speed: 0.16 },
+  { cls: 'bg-gear-g', teeth: 20, holes: 7, dir: -1, speed: 0.08 },
+  { cls: 'bg-gear-h', teeth: 9, holes: 4, dir: 1, speed: 0.2 },
+  { cls: 'bg-gear-i', teeth: 13, holes: 5, dir: 1, speed: 0.13 },
+]
+
+const wrenchLayout = [
+  { cls: 'bg-wrench-1', flip: false },
+  { cls: 'bg-wrench-2', flip: true },
+  { cls: 'bg-wrench-3', flip: false },
 ]
 
 function GearBackground() {
   return (
     <div className="gear-bg" aria-hidden="true">
-      {gearLayout.map(({ cls, teeth, dir, speed }) => (
+      {gearLayout.map(({ cls, teeth, holes, dir, speed }) => (
         <div className={`bg-gear ${cls}`} key={cls} data-dir={dir} data-speed={speed}>
           <svg viewBox="0 0 100 100" focusable="false">
-            <path d={gearPath(teeth, 48, 40)} />
-            <circle cx="50" cy="50" r="12" />
-            <circle cx="50" cy="50" r="28" className="bg-gear-ring" />
+            <path d={gearPath(teeth, 48, 39, holes)} fillRule="evenodd" />
           </svg>
+        </div>
+      ))}
+      {wrenchLayout.map(({ cls, flip }) => (
+        <div className={`bg-wrench ${cls}${flip ? ' bg-wrench-flip' : ''}`} key={cls}>
+          <Wrench strokeWidth={1.1} />
         </div>
       ))}
     </div>
   )
 }
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [progress, setProgress] = useState(0)
@@ -96,9 +111,13 @@ function App() {
       setShowTop(window.scrollY > 560)
     }
     const gears = [...document.querySelectorAll('.bg-gear')]
+    const wrenches = [...document.querySelectorAll('.bg-wrench')]
     let frame = 0
     const spinGears = () => {
       frame = 0
+      wrenches.forEach((wrench, index) => {
+        wrench.style.setProperty('--swing', `${Math.sin(window.scrollY / 140 + index * 2) * 28}deg`)
+      })
       gears.forEach(gear => {
         gear.style.setProperty('--spin', `${window.scrollY * Number(gear.dataset.speed) * Number(gear.dataset.dir)}deg`)
       })

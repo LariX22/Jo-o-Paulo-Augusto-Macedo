@@ -672,3 +672,30 @@ a.contact-row:hover { padding-right: 6px; padding-left: 6px; background: rgba(25
   .bg-gear-g { top: 74vh; left: -16vh; width: 38vh; height: 38vh; }
   .bg-gear-i { top: 80vh; left: 30vh; width: 16vh; height: 16vh; }
 }
+/* Engrenagens com furos e chaves interagindo */
+.bg-gear path { fill: currentColor; fill-opacity: .16; stroke-width: 1.2; stroke-linejoin: round; }
+.bg-gear { opacity: .14; }
+[data-theme='dark'] .bg-gear { opacity: .2; }
+.bg-wrench { position: absolute; z-index: 1; color: #3a3a36; opacity: .2; transform: rotate(calc(var(--base, 0deg) + var(--swing, 0deg))); will-change: transform; transition: opacity .3s ease; }
+.bg-wrench svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.bg-wrench-flip svg { transform: scaleX(-1); }
+[data-theme='dark'] .bg-wrench { color: #e0a27f; opacity: .26; }
+@media (min-width: 901px) {
+  .bg-wrench-1 { --base: 20deg; top: 33vh; left: 1vh; width: 22vh; height: 22vh; }
+  .bg-wrench-2 { --base: -15deg; top: 33vh; right: 22vh; width: 20vh; height: 20vh; }
+  .bg-wrench-3 { --base: 35deg; top: 62vh; left: 52vw; width: 16vh; height: 16vh; }
+}
+@media (max-width: 900px) {
+  .bg-wrench-1 { --base: 20deg; top: 30vh; left: 2vw; width: 15vh; height: 15vh; }
+  .bg-wrench-2 { --base: -15deg; top: 56vh; right: 2vw; width: 14vh; height: 14vh; }
+  .bg-wrench-3 { display: none; }
+}
+/* Mais presença */
+.bg-gear { opacity: .3; }
+.bg-gear path { fill-opacity: .2; stroke-width: 1.4; }
+.bg-wrench { opacity: .38; }
+[data-theme='dark'] .bg-gear { opacity: .38; }
+[data-theme='dark'] .bg-wrench { opacity: .45; }
+[data-theme='dark'] .bg-gear-e, [data-theme='dark'] .bg-gear-f { opacity: .42; }
+.bg-gear { opacity: .24; }
+.bg-wrench { opacity: .3; }
