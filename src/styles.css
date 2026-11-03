@@ -645,3 +645,30 @@ a.contact-row:hover { padding-right: 6px; padding-left: 6px; background: rgba(25
   .bg-gear-g { left: -130px; width: 300px; height: 300px; }
   .bg-gear-h, .bg-gear-i { display: none; }
 }
+/* Posições separadas das engrenagens da esquerda */
+.bg-gear-e { top: 4vh; left: -6vw; width: 40vh; height: 40vh; bottom: auto; }
+.bg-gear-h { top: 30vh; left: 13vw; width: 14vh; height: 14vh; bottom: auto; display: block; }
+.bg-gear-f { top: 50vh; left: 5vw; width: 18vh; height: 18vh; bottom: auto; }
+.bg-gear-g { top: 74vh; left: -7vw; width: 38vh; height: 38vh; bottom: auto; }
+.bg-gear-i { top: 82vh; left: 17vw; width: 16vh; height: 16vh; bottom: auto; display: block; }
+@media (max-width: 900px) {
+  .bg-gear-e { top: 6vh; left: -14vw; width: 26vh; height: 26vh; }
+  .bg-gear-f { top: 48vh; left: auto; right: -6vw; width: 14vh; height: 14vh; }
+  .bg-gear-g { top: 72vh; left: -16vw; width: 30vh; height: 30vh; }
+  .bg-gear-h, .bg-gear-i { display: none; }
+}.bg-gear-b { display: none; }
+@media (max-width: 900px) {
+  .bg-gear-f { display: none; }
+  .bg-gear-g { left: -26vw; }
+}
+/* Desktop: tudo proporcional à altura da tela para nunca sobrepor */
+@media (min-width: 901px) {
+  .bg-gear-a { top: -12vh; right: -14vh; width: 44vh; height: 44vh; }
+  .bg-gear-c { top: 40vh; right: -22vh; width: 52vh; height: 52vh; }
+  .bg-gear-d { top: auto; bottom: -10vh; right: 24vw; width: 24vh; height: 24vh; }
+  .bg-gear-e { top: 4vh; left: -14vh; width: 40vh; height: 40vh; }
+  .bg-gear-h { top: 26vh; left: 30vh; width: 12vh; height: 12vh; }
+  .bg-gear-f { top: 50vh; left: 6vh; width: 18vh; height: 18vh; }
+  .bg-gear-g { top: 74vh; left: -16vh; width: 38vh; height: 38vh; }
+  .bg-gear-i { top: 80vh; left: 30vh; width: 16vh; height: 16vh; }
+}
