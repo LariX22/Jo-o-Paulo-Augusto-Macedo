@@ -113,8 +113,10 @@ function App() {
     const gears = [...document.querySelectorAll('.bg-gear')]
     const wrenches = [...document.querySelectorAll('.bg-wrench')]
     let frame = 0
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const spinGears = () => {
       frame = 0
+      if (reduceMotion) return
       wrenches.forEach((wrench, index) => {
         wrench.style.setProperty('--swing', `${Math.sin(window.scrollY / 140 + index * 2) * 28}deg`)
       })
