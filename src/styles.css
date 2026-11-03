@@ -703,3 +703,8 @@ a.contact-row:hover { padding-right: 6px; padding-left: 6px; background: rgba(25
 .button-contact:hover { filter: brightness(1.1); transform: translateY(-2px); }
 [data-theme='dark'] .button-contact { color: #14171c; }
 @media (prefers-reduced-motion: reduce) { .bg-wrench { transform: rotate(var(--base, 0deg)); } html { scroll-behavior: auto; } }
+
+/* Foto profissional */
+.portrait-frame { flex: 0 0 118px; height: 148px; padding: 0; border: 2px solid var(--accent); background: #ddd; box-shadow: 0 10px 26px rgba(0,0,0,.18); }
+.portrait-photo { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; }
+@media (max-width: 900px) { .portrait-frame { flex-basis: 96px; height: 120px; } }

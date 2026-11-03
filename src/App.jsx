@@ -193,10 +193,7 @@ function App() {
                 <div className="career-board-head">
                   <div><span className="board-kicker">PERCURSO</span><h2>Experiência<br />em movimento.</h2></div>
                   <div className="portrait-frame">
-                  <div className="portrait-grid" />
-                  <span className="portrait-corner corner-tl" /><span className="portrait-corner corner-br" />
-                  <div className="portrait-monogram">JP<span>.</span></div>
-                  <div className="portrait-caption">FOTO<br />PROFISSIONAL</div>
+                  <img className="portrait-photo" src="/images/joao-paulo.jpg" alt="João Paulo Augusto Macedo" width="800" height="1000" fetchpriority="high" />
                   </div>
                 </div>
                 <p className="career-route-hint">SELECIONE UM CARGO PARA VER A ATUAÇÃO</p>
