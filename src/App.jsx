@@ -3,7 +3,7 @@ import {
   ArrowDown, ArrowDownToLine, ArrowRight, ArrowUp, BarChart3, BriefcaseBusiness,
   Check, ChevronDown, Cog, Cpu, GraduationCap, Layers3, Linkedin, Mail, MapPin,
   Menu, Phone, ShieldCheck, Sparkles, Wrench, X,
-  LayoutDashboard, CalendarClock, DraftingCompass, Ruler,
+  LayoutDashboard, CalendarClock, DraftingCompass, Ruler, Moon, Sun,
 } from 'lucide-react'
 import {
   assetGroups, education, experiences, highlights, methods, profile, profileText,
@@ -36,6 +36,14 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [progress, setProgress] = useState(0)
   const [showTop, setShowTop] = useState(false)
+  const [theme, setTheme] = useState(() => document.documentElement.dataset.theme || 'light')
+
+  const toggleTheme = () => {
+    const next = theme === 'dark' ? 'light' : 'dark'
+    document.documentElement.dataset.theme = next
+    try { localStorage.setItem('theme', next) } catch { /* armazenamento indisponível */ }
+    setTheme(next)
+  }
   const [selectedExperience, setSelectedExperience] = useState(0)
   const activeExperience = experiences[selectedExperience]
   const activeResponsibilities = activeExperience.groups
@@ -84,6 +92,9 @@ function App() {
           {sections.map(([id, label]) => <a key={id} href={`#${id}`} onClick={closeMenu}>{label}</a>)}
           <a className="nav-resume" href={resumeUrl} download="Curriculo-Executivo-Joao-Paulo-Macedo.pdf" onClick={closeMenu}><ArrowDownToLine size={15} /> Currículo PDF</a>
         </nav>
+        <button className="theme-toggle" type="button" onClick={toggleTheme} aria-label={theme === 'dark' ? 'Ativar modo claro' : 'Ativar modo escuro'} title={theme === 'dark' ? 'Modo claro' : 'Modo escuro'}>
+          {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+        </button>
       </header>
 
       <main>
