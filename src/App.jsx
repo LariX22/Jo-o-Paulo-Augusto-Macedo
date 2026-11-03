@@ -182,6 +182,7 @@ function App() {
               <div className="hero-actions">
                 <a className="button button-primary" href="#experiencia">Ver trajetória profissional <ArrowRight size={17} /></a>
                 <a className="button button-outline" href={resumeUrl} target="_blank" rel="noreferrer">Currículo executivo <ArrowDownToLine size={17} /></a>
+                <a className="button button-contact" href={`mailto:${profile.email}`}>Entre em contato <Mail size={17} /></a>
               </div>
               <div className="hero-location"><MapPin size={15} />{profile.location}</div>
             </div>

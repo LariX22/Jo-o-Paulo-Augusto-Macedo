@@ -699,3 +699,6 @@ a.contact-row:hover { padding-right: 6px; padding-left: 6px; background: rgba(25
 [data-theme='dark'] .bg-gear-e, [data-theme='dark'] .bg-gear-f { opacity: .42; }
 .bg-gear { opacity: .24; }
 .bg-wrench { opacity: .3; }
+.button-contact { color: #fff; border-color: var(--accent); background: var(--accent); }
+.button-contact:hover { filter: brightness(1.1); transform: translateY(-2px); }
+[data-theme='dark'] .button-contact { color: #14171c; }
