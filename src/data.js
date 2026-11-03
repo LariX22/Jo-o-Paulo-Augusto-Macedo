@@ -89,6 +89,6 @@ export const education = [
   { name: 'Engenharia Mecânica', institution: 'Anhanguera Educacional', status: 'Em andamento' },
   { name: 'Tecnologia em Gestão da Manutenção Industrial', institution: 'UniCesumar', status: 'Em andamento' },
   { name: 'Tecnologia em Gestão da Produção Industrial', institution: 'UNOPAR – Universidade Norte do Paraná', status: 'Concluído' },
-  { name: 'Pós-graduação em Engenharia e Gerenciamento de Manutenção', institution: '', status: 'Concluído' },
+  { name: 'Pós-graduação em Engenharia e Gerenciamento de Manutenção', institution: 'Faculdade Líbano', status: 'Concluído' },
   { name: 'Técnico em Eletrônica', institution: 'Escola Técnica Municipal “Os Padres do Trabalho”', status: '' },
 ]
