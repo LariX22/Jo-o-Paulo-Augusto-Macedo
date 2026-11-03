@@ -519,3 +519,10 @@ a.contact-row:hover { padding-right: 6px; padding-left: 6px; background: rgba(25
   .education-item p { font-size: 10px; }
   .contact-row b { font-size: 12px; }
 }
+
+/* Ícones por função */
+.role-icon { position: absolute; top: 2px; right: 8px; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; background: #e9e6e1; color: #642f19; }
+.route-stop-current .role-icon { background: var(--accent); color: #fff; }
+.route-stop { padding-right: 46px; }
+.timeline-marker { width: 32px; height: 32px; margin: -6px 0 0 -7px; background: #fff; border-color: var(--accent); color: #642f19; box-shadow: 0 0 0 4px #f0f0ee; }
+@media (max-width: 900px) { .timeline-marker { margin: -6px 0 0 -6px; } }

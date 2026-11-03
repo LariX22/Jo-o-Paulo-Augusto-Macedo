@@ -3,6 +3,7 @@ import {
   ArrowDown, ArrowDownToLine, ArrowRight, ArrowUp, BarChart3, BriefcaseBusiness,
   Check, ChevronDown, Cog, Cpu, GraduationCap, Layers3, Linkedin, Mail, MapPin,
   Menu, Phone, ShieldCheck, Sparkles, Wrench, X,
+  LayoutDashboard, CalendarClock, DraftingCompass, Ruler,
 } from 'lucide-react'
 import {
   assetGroups, education, experiences, highlights, methods, profile, profileText,
@@ -28,6 +29,8 @@ function SectionTitle({ eyebrow, title, copy, light = false }) {
 function ChipList({ items }) {
   return <div className="chip-list">{items.map(item => <span className="chip" key={item}>{item}</span>)}</div>
 }
+
+const roleIcons = [<LayoutDashboard size={16} />, <CalendarClock size={16} />, <DraftingCompass size={16} />, <Ruler size={16} />]
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -121,6 +124,7 @@ function App() {
                         aria-label={`Ver experiência: ${experience.role}, ${experience.period}`}
                         onClick={() => setSelectedExperience(index)}
                       >
+                        <span className="role-icon" aria-hidden="true">{roleIcons[index]}</span>
                         <span className="route-period">{experience.period}</span>
                         <b>{experience.role}</b>
                         <small>{experience.company}</small>
@@ -184,7 +188,7 @@ function App() {
             <SectionTitle eyebrow="03 / TRAJETÓRIA PROFISSIONAL" title={<>Experiência que<br /><em>constrói confiança.</em></>} copy="Atuação profissional em ordem cronológica, com responsabilidades documentadas." />
             <div className="timeline">
               {experiences.map((job, index) => <article className="timeline-item reveal" key={`${job.company}-${job.role}`}>
-                <div className="timeline-marker"><span /></div>
+                <div className="timeline-marker" aria-hidden="true">{roleIcons[index]}</div>
                 <div className="timeline-date">{job.period}</div>
                 <div className="timeline-card">
                   <div className="timeline-heading"><div><h3>{job.role}</h3><p className="company-name">{job.company}</p></div>{job.current && <span className="current-badge"><span /> ATUAL</span>}</div>
