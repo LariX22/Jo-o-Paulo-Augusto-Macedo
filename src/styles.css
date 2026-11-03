@@ -396,6 +396,55 @@ a.contact-row:hover { padding-right: 6px; padding-left: 6px; background: rgba(25
 .route-dot { color: #303030; }
 .route-stop-current .route-dot { color: var(--accent); }
 .career-route::before { background: #999; }
+.career-route-hint {
+  margin: 14px 0 -7px 31px;
+  color: #292929;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .8px;
+}
+.career-route { padding: 16px 0 0 26px; }
+.career-route::before { left: 8px; }
+.route-entry { position: relative; }
+.route-gear {
+  position: absolute;
+  z-index: 2;
+  top: 9px;
+  left: -26px;
+  width: 21px;
+  height: 21px;
+  display: grid;
+  place-items: center;
+  color: #303030;
+  background: #fff;
+  pointer-events: none;
+  transition: color .2s ease, transform .25s ease;
+}
+.route-entry:hover .route-gear { color: var(--accent); transform: rotate(25deg); }
+.route-stop {
+  width: 100%;
+  min-height: 0;
+  display: grid;
+  gap: 3px;
+  padding: 8px 10px 10px;
+  border: 0;
+  border-left: 3px solid transparent;
+  border-radius: 0;
+  color: inherit;
+  background: transparent;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transition: background .18s ease, border-color .18s ease;
+}
+.route-stop:hover, .route-stop:focus-visible { background: #f0f0ee; }
+.route-stop:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.route-stop-current {
+  border-left-color: var(--accent);
+  box-shadow: none;
+  background: #f1efed;
+}
+.route-stop-current b, .route-stop-current .route-period { color: #642f19; }
 .career-detail { margin-top: 5px; padding: 18px 0 0 18px; border-top: 1px solid #c8c8c8; }
 .career-detail-label { color: #5b2c18; font-size: 11px; font-weight: 700; letter-spacing: 1px; }
 .career-detail h3 { margin: 7px 0; color: #171717; font: 700 16px/1.4 var(--heading); }
@@ -452,6 +501,10 @@ a.contact-row:hover { padding-right: 6px; padding-left: 6px; background: rgba(25
   .route-period { font-size: 10px; }
   .route-stop b { font-size: 12px; }
   .route-stop small { font-size: 11px; }
+  .career-route-hint { margin-left: 29px; font-size: 9px; }
+  .career-route { padding-left: 24px; }
+  .route-gear { left: -24px; }
+  .route-stop { padding: 8px 8px 10px; }
   .career-detail p, .career-detail li { font-size: 12px; }
   .section-title > p { font-size: 13px; }
   .profile-body > p:not(.profile-lead) { font-size: 13px; }

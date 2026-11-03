@@ -109,21 +109,23 @@ function App() {
                   <div className="portrait-caption">FOTO<br />PROFISSIONAL</div>
                   </div>
                 </div>
+                <p className="career-route-hint">SELECIONE UM CARGO PARA VER A ATUAÇÃO</p>
                 <div className="career-route">
                   {experiences.map((experience, index) => (
-                    <button
-                      className={`route-stop${selectedExperience === index ? ' route-stop-current' : ''}`}
-                      key={`${experience.company}-${experience.role}`}
-                      type="button"
-                      aria-pressed={selectedExperience === index}
-                      aria-label={`Ver experiência: ${experience.role}, ${experience.period}`}
-                      onClick={() => setSelectedExperience(index)}
-                    >
-                      <span className="route-dot"><Cog size={17} /></span>
-                      <span className="route-period">{experience.period}</span>
-                      <b>{experience.role}</b>
-                      <small>{experience.company}</small>
-                    </button>
+                    <div className="route-entry" key={`${experience.company}-${experience.role}`}>
+                      <span className="route-gear" aria-hidden="true"><Cog size={19} /></span>
+                      <button
+                        className={`route-stop${selectedExperience === index ? ' route-stop-current' : ''}`}
+                        type="button"
+                        aria-pressed={selectedExperience === index}
+                        aria-label={`Ver experiência: ${experience.role}, ${experience.period}`}
+                        onClick={() => setSelectedExperience(index)}
+                      >
+                        <span className="route-period">{experience.period}</span>
+                        <b>{experience.role}</b>
+                        <small>{experience.company}</small>
+                      </button>
+                    </div>
                   ))}
                 </div>
                 <div className="career-detail" aria-live="polite">
