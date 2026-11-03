@@ -49,6 +49,11 @@ const gearLayout = [
   { cls: 'bg-gear-b', teeth: 10, dir: -1, speed: 0.17 },
   { cls: 'bg-gear-c', teeth: 18, dir: -1, speed: 0.09 },
   { cls: 'bg-gear-d', teeth: 12, dir: 1, speed: 0.14 },
+  { cls: 'bg-gear-e', teeth: 16, dir: 1, speed: 0.11 },
+  { cls: 'bg-gear-f', teeth: 11, dir: -1, speed: 0.16 },
+  { cls: 'bg-gear-g', teeth: 20, dir: -1, speed: 0.08 },
+  { cls: 'bg-gear-h', teeth: 9, dir: 1, speed: 0.2 },
+  { cls: 'bg-gear-i', teeth: 13, dir: 1, speed: 0.13 },
 ]
 
 function GearBackground() {

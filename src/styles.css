@@ -629,3 +629,19 @@ a.contact-row:hover { padding-right: 6px; padding-left: 6px; background: rgba(25
   .bg-gear-d { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .bg-gear svg { animation: none; } }
+/* Engrenagens extras à esquerda */
+.bg-gear-e { top: 150px; left: -120px; width: 400px; height: 400px; opacity: .13; }
+.bg-gear-f { top: 430px; left: 150px; width: 190px; height: 190px; opacity: .12; }
+.bg-gear-g { top: 52%; left: -170px; width: 460px; height: 460px; }
+.bg-gear-h { top: 70%; left: 190px; width: 150px; height: 150px; }
+.bg-gear-i { bottom: 24%; left: 4%; width: 240px; height: 240px; }
+.bg-gear-f svg { animation-duration: 35s; animation-direction: reverse; }
+.bg-gear-g svg { animation-duration: 100s; animation-direction: reverse; }
+.bg-gear-h svg { animation-duration: 30s; }
+[data-theme='dark'] .bg-gear-e, [data-theme='dark'] .bg-gear-f { opacity: .17; }
+@media (max-width: 900px) {
+  .bg-gear-e { top: 90px; left: -100px; width: 260px; height: 260px; }
+  .bg-gear-f { top: 330px; left: auto; right: -30px; width: 130px; height: 130px; }
+  .bg-gear-g { left: -130px; width: 300px; height: 300px; }
+  .bg-gear-h, .bg-gear-i { display: none; }
+}
