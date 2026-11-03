@@ -12,7 +12,7 @@ export const profileText = 'Profissional com mais de 20 anos de experiência ind
 
 export const highlights = [
   { value: '75 → 189', label: 'ativos industriais', detail: 'Expansão de aproximadamente 75 ativos em 6 plantas para 189 ativos em 8 plantas industriais.' },
-  { value: '4.000 → 9.000+', label: 'toneladas por dia', detail: 'Evolução da capacidade média de alimentação da operação, de aproximadamente 4.000 para mais de 9.000 t/dia.' },
+  { value: '4.000 → 10.000', label: 'toneladas por dia', detail: 'Evolução da capacidade média de alimentação da operação, de aproximadamente 4.000 para 10.000 t/dia.' },
   { value: '~70% → >90%', label: 'Disponibilidade Física Inerente', detail: 'Contribuição para a evolução da DFI da operação, partindo de valores próximos a 70% para patamares superiores a 90%.' },
   { value: '82', label: 'páginas de dashboards', detail: 'Ambiente de Business Intelligence aplicado à Manutenção, com dashboards e controles gerenciais.' },
   { value: '90+', label: 'conteúdos técnicos', detail: 'Vídeos de treinamento, apresentações e conteúdos para capacitação da equipe de Manutenção Mecânica.' },
@@ -23,7 +23,7 @@ export const projects = [
   {
     number: '01', title: 'Expansão e estruturação da manutenção',
     text: 'Participação na estruturação da Manutenção durante período de significativa expansão da LGA Mineração. Fortalecimento das rotinas de PCM, programação, indicadores, gestão de ativos e confiabilidade para suportar o crescimento da operação.',
-    tags: ['6 → 8 plantas', '75 → 189 ativos', '~4.000 → >9.000 t/dia'],
+    tags: ['6 → 8 plantas', '75 → 189 ativos', '~4.000 → 10.000 t/dia'],
   },
   {
     number: '02', title: 'Governança de indicadores e BI',
@@ -88,6 +88,7 @@ export const tools = [
 export const education = [
   { name: 'Engenharia Mecânica', institution: 'Anhanguera Educacional', status: 'Em andamento' },
   { name: 'Tecnologia em Gestão da Manutenção Industrial', institution: 'UniCesumar', status: 'Em andamento' },
-  { name: 'Tecnologia em Gestão da Produção Industrial', institution: 'UNOPAR – Universidade Norte do Paraná', status: 'Em andamento' },
+  { name: 'Tecnologia em Gestão da Produção Industrial', institution: 'UNOPAR – Universidade Norte do Paraná', status: 'Concluído' },
+  { name: 'Pós-graduação em Engenharia e Gerenciamento de Manutenção', institution: '', status: 'Concluído' },
   { name: 'Técnico em Eletrônica', institution: 'Escola Técnica Municipal “Os Padres do Trabalho”', status: '' },
 ]
