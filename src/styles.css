@@ -35,6 +35,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
 .nav-menu { display: flex; align-items: center; gap: 25px; }
 .nav-menu > a { color: #4b4a45; font-size: 11px; font-weight: 600; transition: color .2s ease; }
 .nav-menu > a:hover { color: var(--accent); }
+.nav-menu > a.nav-current { color: var(--accent); }
 .nav-menu .nav-resume { display: inline-flex; align-items: center; gap: 8px; padding: 11px 14px; border: 1px solid #c9c1b6; color: #4a4944; }
 .nav-resume:hover { border-color: var(--accent); background: rgba(164,95,67,.05); }
 .menu-toggle { display: none; border: 0; color: var(--ink); background: transparent; }
@@ -694,6 +695,20 @@ a.contact-row:hover { transform: translateX(6px); background: rgba(255,255,255,.
 .button-contact:hover { filter: brightness(1.1); transform: translateY(-2px); }
 [data-theme='dark'] .button-contact { color: #14171c; }
 @media (prefers-reduced-motion: reduce) { .bg-wrench { transform: rotate(var(--base, 0deg)); } html { scroll-behavior: auto; } }
+
+[hidden] { display: none !important; }
+.route-page-title { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
+.page-switcher { display: flex; justify-content: space-between; gap: 20px; padding-top: 30px; padding-bottom: 30px; border-top: 1px solid var(--line); }
+.page-switcher > a { display: grid; gap: 6px; color: var(--ink); }
+.page-switcher > a:last-child { margin-left: auto; text-align: right; }
+.page-switcher > a span { color: var(--muted); font-size: 9px; font-weight: 700; letter-spacing: 1.2px; }
+.page-switcher > a b { color: var(--accent); font: 700 13px/1.4 var(--heading); }
+.page-switcher > a:hover b { text-decoration: underline; text-underline-offset: 3px; }
+[data-theme='dark'] .nav-menu > a.nav-current { color: #f0b997; }
+@media (max-width: 760px) {
+  .page-switcher { padding-top: 23px; padding-bottom: 23px; }
+  .page-switcher > a b { font-size: 12px; }
+}
 
 /* Foto profissional */
 .portrait-frame { flex: 0 0 118px; height: 148px; padding: 0; border: 2px solid var(--accent); background: #ddd; box-shadow: 0 10px 26px rgba(0,0,0,.18); }

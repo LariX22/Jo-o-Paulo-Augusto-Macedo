@@ -12,10 +12,34 @@ import {
 import courseCatalog from './courses.json'
 
 const resumeUrl = '/documentos/curriculo-executivo-joao-paulo.pdf'
-const sections = [
-  ['perfil', 'Perfil'], ['destaques', 'Destaques'], ['experiencia', 'Experiência'],
-  ['ativos', 'Ativos'], ['engenharia', 'Engenharia'], ['formacao', 'Formação'], ['contato', 'Contato'],
+const pages = [
+  { path: '/', id: 'inicio', label: 'Início' },
+  { path: '/destaques', id: 'destaques', label: 'Destaques' },
+  { path: '/experiencia', id: 'experiencia', label: 'Experiência' },
+  { path: '/ativos', id: 'ativos', label: 'Ativos' },
+  { path: '/engenharia', id: 'engenharia', label: 'Engenharia' },
+  { path: '/formacao', id: 'formacao', label: 'Formação' },
+  { path: '/contato', id: 'contato', label: 'Contato' },
 ]
+
+const navigationItems = [
+  { path: '/', label: 'Perfil' },
+  ...pages.slice(1),
+]
+const legacyHashRoutes = {
+  ...Object.fromEntries(pages.map(page => [`#${page.id}`, page.path])),
+  '#perfil': '/',
+}
+const getCurrentPage = () => legacyHashRoutes[window.location.hash] || (window.location.pathname === '/perfil' ? '/' : pages.find(page => page.path === window.location.pathname)?.path || '/')
+const pageTitles = {
+  '/': 'João Paulo Augusto Macedo | Engenharia & Gestão de Ativos',
+  '/destaques': 'Resultados e projetos | João Paulo Augusto Macedo',
+  '/experiencia': 'Experiência profissional | João Paulo Augusto Macedo',
+  '/ativos': 'Gestão de ativos | João Paulo Augusto Macedo',
+  '/engenharia': 'Engenharia e transformação digital | João Paulo Augusto Macedo',
+  '/formacao': 'Formação e cursos | João Paulo Augusto Macedo',
+  '/contato': 'Contato | João Paulo Augusto Macedo',
+}
 
 function SectionTitle({ eyebrow, title, copy, light = false }) {
   return (
@@ -92,11 +116,27 @@ function GearBackground() {
 }
 
 function App() {
+  const [page, setPage] = useState(getCurrentPage)
   const [menuOpen, setMenuOpen] = useState(false)
   const [progress, setProgress] = useState(0)
   const [showTop, setShowTop] = useState(false)
   const [theme, setTheme] = useState(() => document.documentElement.dataset.theme || 'light')
   const [courseSearch, setCourseSearch] = useState('')
+
+  useEffect(() => {
+    if (window.location.pathname !== page || window.location.hash) window.history.replaceState({}, '', page)
+    const handlePopState = () => {
+      setPage(getCurrentPage())
+      setMenuOpen(false)
+    }
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [])
+
+  useEffect(() => {
+    document.title = pageTitles[page] || pageTitles['/']
+    window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
+  }, [page])
 
   const toggleTheme = () => {
     const next = theme === 'dark' ? 'light' : 'dark'
@@ -153,7 +193,7 @@ function App() {
       cancelAnimationFrame(frame)
       observer.disconnect()
     }
-  }, [])
+  }, [page])
 
   const closeMenu = () => setMenuOpen(false)
   const searchTerm = normalizeText(courseSearch.trim())
@@ -165,13 +205,25 @@ function App() {
     courses: filteredCourses.filter(course => course.area === area),
   }))
   const filteredCourseHours = filteredCourses.reduce((total, course) => total + course.hours, 0)
+  const pageIndex = pages.findIndex(item => item.path === page)
+  const previousPage = pageIndex > 0 ? pages[pageIndex - 1] : null
+  const nextPage = pageIndex >= 0 && pageIndex < pages.length - 1 ? pages[pageIndex + 1] : null
+
+  const navigate = (event, path) => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+    event.preventDefault()
+    if (window.location.pathname !== path || window.location.hash) window.history.pushState({}, '', path)
+    setPage(path)
+    setMenuOpen(false)
+    window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
+  }
 
   return (
     <>
       <GearBackground />
       <div className="reading-progress" style={{ transform: `scaleX(${progress / 100})` }} />
       <header className="site-header">
-        <a className="brand" href="#inicio" aria-label="João Paulo Macedo — início" onClick={closeMenu}>
+        <a className="brand" href="/" aria-label="João Paulo Macedo — início" onClick={event => navigate(event, '/')}>
           <span className="brand-mark">JP<span>.</span></span>
           <span className="brand-copy">JOÃO PAULO<span>ENGENHARIA & GESTÃO</span></span>
         </a>
@@ -179,7 +231,7 @@ function App() {
           {menuOpen ? <X size={21} /> : <Menu size={21} />}
         </button>
         <nav className={`nav-menu${menuOpen ? ' nav-open' : ''}`} aria-label="Navegação principal">
-          {sections.map(([id, label]) => <a key={id} href={`#${id}`} onClick={closeMenu}>{label}</a>)}
+          {navigationItems.map(item => <a key={item.path} className={page === item.path ? 'nav-current' : ''} href={item.path} aria-current={page === item.path ? 'page' : undefined} onClick={event => navigate(event, item.path)}>{item.label}</a>)}
           <a className="nav-resume" href={resumeUrl} download="Curriculo-Executivo-Joao-Paulo-Macedo.pdf" onClick={closeMenu}><ArrowDownToLine size={15} /> Currículo PDF</a>
         </nav>
         <button className="theme-toggle" type="button" onClick={toggleTheme} aria-label={theme === 'dark' ? 'Ativar modo claro' : 'Ativar modo escuro'} title={theme === 'dark' ? 'Modo claro' : 'Modo escuro'}>
@@ -188,7 +240,8 @@ function App() {
       </header>
 
       <main>
-        <section className="hero" id="inicio">
+        <h1 className="route-page-title" hidden={page === '/'}>{pages.find(item => item.path === page)?.label}</h1>
+        <section className="hero" id="inicio" hidden={page !== '/'}>
           <div className="hero-grain" aria-hidden="true" />
           <div className="hero-inner">
             <div className="hero-copy">
@@ -197,7 +250,7 @@ function App() {
               <p className="hero-role">Engenharia de Manutenção <i /> Confiabilidade <i /> Gestão de Ativos <i /> PCM</p>
               <p className="hero-intro">Mais de 20 anos de experiência industrial, conectando projetos, manutenção e confiabilidade para apoiar a evolução das operações.</p>
               <div className="hero-actions">
-                <a className="button button-primary" href="#experiencia">Ver trajetória profissional <ArrowRight size={17} /></a>
+                <a className="button button-primary" href="/experiencia" onClick={event => navigate(event, '/experiencia')}>Ver trajetória profissional <ArrowRight size={17} /></a>
                 <a className="button button-outline" href={resumeUrl} target="_blank" rel="noreferrer">Currículo executivo <ArrowDownToLine size={17} /></a>
                 <a className="button button-contact" href={`mailto:${profile.email}`}>Entre em contato <Mail size={17} /></a>
               </div>
@@ -241,10 +294,10 @@ function App() {
             </div>
           </div>
           <div className="hero-credentials" aria-label="Resumo da experiência profissional"><span><b>20+</b> anos de experiência industrial</span><span><b>10+</b> anos no setor de mineração</span></div>
-          <a href="#perfil" className="scroll-hint" aria-label="Rolar para o perfil"><span>EXPLORE O CURRÍCULO</span><ArrowDown size={16} /></a>
+          <a href="#perfil" className="scroll-hint" aria-label="Explorar o perfil profissional"><span>EXPLORE O CURRÍCULO</span><ArrowDown size={16} /></a>
         </section>
 
-        <section className="section section-profile" id="perfil">
+        <section className="section section-profile" id="perfil" hidden={page !== '/'}>
           <div className="container profile-layout">
             <div className="profile-aside reveal">
               <SectionTitle eyebrow="01 / PERFIL" title={<>Engenharia com<br /><em>visão de negócio.</em></>} />
@@ -264,7 +317,7 @@ function App() {
           </div>
         </section>
 
-        <section className="section section-dark" id="destaques">
+        <section className="section section-dark" id="destaques" hidden={page !== '/destaques'}>
           <div className="container">
             <SectionTitle eyebrow="02 / RESULTADOS E PROJETOS" title={<>Escala que exige<br /><em>confiabilidade.</em></>} copy="Indicadores e iniciativas de manutenção, confiabilidade e expansão industrial." light />
             <div className="metrics-grid">
@@ -282,7 +335,7 @@ function App() {
           </div>
         </section>
 
-        <section className="section section-experience" id="experiencia">
+        <section className="section section-experience" id="experiencia" hidden={page !== '/experiencia'}>
           <div className="container">
             <SectionTitle eyebrow="03 / TRAJETÓRIA PROFISSIONAL" title={<>Experiência que<br /><em>constrói confiança.</em></>} copy="Cargos, períodos e responsabilidades ao longo da carreira." />
             <div className="timeline">
@@ -300,14 +353,14 @@ function App() {
           </div>
         </section>
 
-        <section className="section section-assets" id="ativos">
+        <section className="section section-assets" id="ativos" hidden={page !== '/ativos'}>
           <div className="container assets-layout">
             <div className="assets-intro reveal"><SectionTitle eyebrow="04 / GESTÃO DE ATIVOS" title={<>Conhecer o ativo.<br /><em>Entender o processo.</em></>} copy="Gestão e controle de ativos industriais distribuídos em plantas operacionais, abrangendo diferentes etapas da concentração mineral." /><div className="asset-count"><Layers3 size={19} /><span><b>189</b><small>ativos industriais<br />em 8 plantas operacionais</small></span></div></div>
             <div className="asset-lists">{assetGroups.map((group, index) => <article className="asset-panel reveal" key={group.name}><div className="asset-panel-head"><span>0{index + 1}</span><h3>{group.name}</h3></div><div className="asset-items">{group.items.map(item => <span key={item}><Check size={14} />{item}</span>)}</div></article>)}</div>
           </div>
         </section>
 
-        <section className="section section-engineering" id="engenharia">
+        <section className="section section-engineering" id="engenharia" hidden={page !== '/engenharia'}>
           <div className="container">
             <SectionTitle eyebrow="05 / ENGENHARIA & TRANSFORMAÇÃO" title={<>Confiabilidade aplicada<br /><em>à tomada de decisão.</em></>} copy="Engenharia de Manutenção, análise de falhas, Business Intelligence e transformação digital." />
             <div className="engineering-grid">
@@ -320,7 +373,7 @@ function App() {
           </div>
         </section>
 
-        <section className="section section-career" id="formacao">
+        <section className="section section-career" id="formacao" hidden={page !== '/formacao'}>
           <div className="container career-layout">
             <div className="career-column reveal"><SectionTitle eyebrow="06 / FORMAÇÃO ACADÊMICA" title={<>Aprendizado em<br /><em>constante evolução.</em></>} /><div className="education-list">{education.map((item, index) => <article className="education-item" key={item.name}><div className="education-icon"><GraduationCap size={18} /></div><div><h3>{item.name}</h3>{item.institution && <p>{item.institution}</p>}</div><span className="education-status">{item.status || 'Formação técnica'}</span></article>)}</div></div>
             <div className="tools-column reveal"><SectionTitle eyebrow="07 / FERRAMENTAS & TECNOLOGIAS" title={<>Recursos para<br /><em>transformar a rotina.</em></>} /><div className="tools-list">{tools.map((group, index) => <div className="tool-group" key={group.group}><div className="tool-group-icon">{index === 0 ? <BriefcaseBusiness size={17} /> : index === 1 ? <BarChart3 size={17} /> : index === 2 ? <Wrench size={17} /> : <Cpu size={17} />}</div><div><h3>{group.group}</h3><ChipList items={group.items} /></div></div>)}</div><div className="languages"><span className="eyebrow"><span />IDIOMAS</span><div className="language-row"><b>Inglês</b><span>Básico</span></div><div className="language-row"><b>Espanhol</b><span>Básico</span></div></div></div>
@@ -375,13 +428,17 @@ function App() {
           </div>
         </section>
 
-        <section className="contact-section" id="contato">
+        <section className="contact-section" id="contato" hidden={page !== '/contato'}>
           <div className="container contact-layout"><div className="contact-copy reveal"><SectionTitle eyebrow="08 / CONTATO" title={<>Vamos conversar<br /><em>sobre manutenção.</em></>} copy="Entre em contato pelos canais profissionais." light /><a href={`mailto:${profile.email}`} className="button button-primary contact-cta">Enviar e-mail <ArrowRight size={17} /></a></div><div className="contact-details reveal"><a href={`tel:${profile.phoneLink}`} className="contact-row"><span className="contact-icon"><Phone size={18} /></span><span><small>TELEFONE</small><b>{profile.phone}</b></span><ArrowRight size={17} /></a><a href={`mailto:${profile.email}`} className="contact-row"><span className="contact-icon"><Mail size={18} /></span><span><small>E-MAIL</small><b>{profile.email}</b></span><ArrowRight size={17} /></a><a href={profile.linkedin} className="contact-row" target="_blank" rel="noreferrer"><span className="contact-icon"><Linkedin size={18} /></span><span><small>LINKEDIN</small><b>Perfil profissional</b></span><ArrowRight size={17} /></a><div className="contact-row contact-place"><span className="contact-icon"><MapPin size={18} /></span><span><small>LOCALIZAÇÃO</small><b>{profile.location}</b></span></div></div></div>
         </section>
+        {page !== '/' && <nav className="page-switcher container" aria-label="Navegação entre páginas">
+          {previousPage ? <a href={previousPage.path} onClick={event => navigate(event, previousPage.path)}><span>ANTERIOR</span><b>← {previousPage.label}</b></a> : <span />}
+          {nextPage && <a href={nextPage.path} onClick={event => navigate(event, nextPage.path)}><span>PRÓXIMA PÁGINA</span><b>{nextPage.label} →</b></a>}
+        </nav>}
       </main>
 
-      <footer className="site-footer"><div className="container footer-inner"><a className="brand footer-brand" href="#inicio"><span className="brand-mark">JP<span>.</span></span><span className="brand-copy">JOÃO PAULO<span>ENGENHARIA & GESTÃO</span></span></a><p>Currículo profissional · {profile.name}</p><a className="footer-top" href="#inicio">VOLTAR AO INÍCIO <ArrowUp size={14} /></a></div></footer>
-      <a className={`back-to-top${showTop ? ' back-to-top-visible' : ''}`} href="#inicio" aria-label="Voltar ao topo"><ArrowUp size={18} /></a>
+      <footer className="site-footer"><div className="container footer-inner"><a className="brand footer-brand" href="/" onClick={event => navigate(event, '/')}><span className="brand-mark">JP<span>.</span></span><span className="brand-copy">JOÃO PAULO<span>ENGENHARIA & GESTÃO</span></span></a><p>Currículo profissional · {profile.name}</p><a className="footer-top" href="/" onClick={event => navigate(event, '/')}>VOLTAR AO INÍCIO <ArrowUp size={14} /></a></div></footer>
+      <a className={`back-to-top${showTop ? ' back-to-top-visible' : ''}`} href="/" aria-label="Voltar ao início" onClick={event => navigate(event, '/') }><ArrowUp size={18} /></a>
     </>
   )
 }
