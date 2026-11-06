@@ -16,7 +16,7 @@ export const highlights = [
   { value: '~70% → >90%', label: 'Disponibilidade Física Inerente', detail: 'Contribuição para a evolução da DFI da operação, partindo de valores próximos a 70% para patamares superiores a 90%.' },
   { value: '82', label: 'páginas de dashboards', detail: 'Ambiente de Business Intelligence aplicado à Manutenção, com dashboards e controles gerenciais.' },
   { value: '90+', label: 'conteúdos técnicos', detail: 'Vídeos de treinamento, apresentações e conteúdos para capacitação da equipe de Manutenção Mecânica.' },
-  { value: 'R$ 16,8 mi', label: 'Gestão de OPEX', detail: 'Planejamento, controle orçamentário e análise de custos da manutenção.' },
+  { value: 'Gestão de OPEX', label: '', detail: 'Planejamento, controle orçamentário e análise de custos da manutenção.' },
 ]
 
 export const projects = [

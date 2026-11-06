@@ -268,8 +268,8 @@ function App() {
           <div className="container">
             <SectionTitle eyebrow="02 / RESULTADOS E PROJETOS" title={<>Escala que exige<br /><em>confiabilidade.</em></>} copy="Marcos e iniciativas descritos na trajetória profissional, em seu contexto operacional." light />
             <div className="metrics-grid">
-              {highlights.map((item, index) => <article className="metric-card reveal" key={item.label} style={{ '--delay': `${index * 70}ms` }}>
-                <span className="metric-index">0{index + 1}</span><div className="metric-value">{item.value}</div><h3>{item.label}</h3><p>{item.detail}</p><div className="metric-rule" />
+              {highlights.map((item, index) => <article className="metric-card reveal" key={item.value} style={{ '--delay': `${index * 70}ms` }}>
+                <span className="metric-index">0{index + 1}</span><div className={`metric-value${item.label ? '' : ' metric-value-text'}`}>{item.value}</div>{item.label && <h3>{item.label}</h3>}<p>{item.detail}</p><div className="metric-rule" />
               </article>)}
             </div>
             <div className="projects-heading reveal"><span className="eyebrow"><span />INICIATIVAS</span><p>Frentes de atuação que conectam processos, dados e equipes.</p></div>

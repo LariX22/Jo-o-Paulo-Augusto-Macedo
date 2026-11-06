@@ -119,6 +119,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
 .metric-card:hover { z-index: 1; transform: translateY(-3px); background: rgba(255,255,255,.07); }
 .metric-index { position: absolute; top: 19px; right: 19px; color: #d3cec4; font: 600 9px var(--heading); letter-spacing: 1px; }
 .metric-value { margin: 4px 0 9px; color: #d3b39e; font: 800 clamp(25px, 3vw, 35px)/1 var(--heading); letter-spacing: -1.5px; }
+.metric-value-text { max-width: 100%; font-size: clamp(20px, 2.2vw, 27px); line-height: 1.15; letter-spacing: -.8px; }
 .metric-card h3 { margin: 0 0 7px; color: #fffefa; font: 700 11px var(--heading); }
 .metric-card p { max-width: 280px; margin: 0; color: #e0ddd5; font-size: 10px; line-height: 1.7; }
 .metric-rule { position: absolute; right: 23px; bottom: 0; left: 23px; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
