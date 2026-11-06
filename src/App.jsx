@@ -3,12 +3,13 @@ import {
   ArrowDown, ArrowDownToLine, ArrowRight, ArrowUp, BarChart3, BriefcaseBusiness,
   Check, ChevronDown, Cog, Cpu, GraduationCap, Layers3, Linkedin, Mail, MapPin,
   Menu, Phone, ShieldCheck, Sparkles, Wrench, X,
-  LayoutDashboard, CalendarClock, DraftingCompass, Ruler, Moon, Sun,
+  LayoutDashboard, CalendarClock, DraftingCompass, Ruler, Moon, Sun, Search,
 } from 'lucide-react'
 import {
   assetGroups, education, experiences, highlights, methods, profile, profileText,
   projects, tools,
 } from './data'
+import courseCatalog from './courses.json'
 
 const resumeUrl = '/documentos/curriculo-executivo-joao-paulo.pdf'
 const sections = [
@@ -28,6 +29,10 @@ function SectionTitle({ eyebrow, title, copy, light = false }) {
 
 function ChipList({ items }) {
   return <div className="chip-list">{items.map(item => <span className="chip" key={item}>{item}</span>)}</div>
+}
+
+function normalizeText(value) {
+  return value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('pt-BR')
 }
 
 const roleIcons = [<LayoutDashboard size={16} />, <CalendarClock size={16} />, <DraftingCompass size={16} />, <Ruler size={16} />]
@@ -91,6 +96,7 @@ function App() {
   const [progress, setProgress] = useState(0)
   const [showTop, setShowTop] = useState(false)
   const [theme, setTheme] = useState(() => document.documentElement.dataset.theme || 'light')
+  const [courseSearch, setCourseSearch] = useState('')
 
   const toggleTheme = () => {
     const next = theme === 'dark' ? 'light' : 'dark'
@@ -150,6 +156,15 @@ function App() {
   }, [])
 
   const closeMenu = () => setMenuOpen(false)
+  const searchTerm = normalizeText(courseSearch.trim())
+  const filteredCourses = courseCatalog.filter(course =>
+    normalizeText(`${course.name} ${course.institution} ${course.area} ${course.description}`).includes(searchTerm),
+  )
+  const courseGroups = [...new Set(filteredCourses.map(course => course.area))].map(area => ({
+    area,
+    courses: filteredCourses.filter(course => course.area === area),
+  }))
+  const filteredCourseHours = filteredCourses.reduce((total, course) => total + course.hours, 0)
 
   return (
     <>
@@ -310,10 +325,58 @@ function App() {
             <div className="career-column reveal"><SectionTitle eyebrow="06 / FORMAÇÃO ACADÊMICA" title={<>Aprendizado em<br /><em>constante evolução.</em></>} /><div className="education-list">{education.map((item, index) => <article className="education-item" key={item.name}><div className="education-icon"><GraduationCap size={18} /></div><div><h3>{item.name}</h3>{item.institution && <p>{item.institution}</p>}</div><span className="education-status">{item.status || 'Formação técnica'}</span></article>)}</div></div>
             <div className="tools-column reveal"><SectionTitle eyebrow="07 / FERRAMENTAS & TECNOLOGIAS" title={<>Recursos para<br /><em>transformar a rotina.</em></>} /><div className="tools-list">{tools.map((group, index) => <div className="tool-group" key={group.group}><div className="tool-group-icon">{index === 0 ? <BriefcaseBusiness size={17} /> : index === 1 ? <BarChart3 size={17} /> : index === 2 ? <Wrench size={17} /> : <Cpu size={17} />}</div><div><h3>{group.group}</h3><ChipList items={group.items} /></div></div>)}</div><div className="languages"><span className="eyebrow"><span />IDIOMAS</span><div className="language-row"><b>Inglês</b><span>Básico</span></div><div className="language-row"><b>Espanhol</b><span>Básico</span></div></div></div>
           </div>
+          <div className="container course-catalog reveal">
+            <div className="course-catalog-heading">
+              <div>
+                <span className="eyebrow"><span />CURSOS COMPLEMENTARES</span>
+                <h2>Cursos por <em>área de atuação.</em></h2>
+                <p>Conteúdo e carga horária conforme informados na planilha.</p>
+              </div>
+              <label className="course-search">
+                <Search size={17} aria-hidden="true" />
+                <input
+                  type="search"
+                  value={courseSearch}
+                  onChange={event => setCourseSearch(event.target.value)}
+                  placeholder="Buscar curso ou tema"
+                  aria-label="Buscar cursos por nome, instituição, área ou descrição"
+                />
+              </label>
+            </div>
+            <p className="course-results" aria-live="polite">
+              {filteredCourses.length} {filteredCourses.length === 1 ? 'curso' : 'cursos'} · {filteredCourseHours} horas de carga horária informada
+            </p>
+            {courseGroups.length > 0 ? (
+              <div className="course-groups">
+                {courseGroups.map(group => {
+                  const hours = group.courses.reduce((total, course) => total + course.hours, 0)
+                  return (
+                    <details className="course-group" key={group.area} open={Boolean(searchTerm)}>
+                      <summary>
+                        <span className="course-group-name">{group.area}</span>
+                        <span className="course-group-meta">{group.courses.length} {group.courses.length === 1 ? 'curso' : 'cursos'} · {hours} h</span>
+                      </summary>
+                      <div className="course-list">
+                        {group.courses.map(course => (
+                          <article className="course-card" key={course.name}>
+                            <div className="course-card-heading">
+                              <h3>{course.name}</h3>
+                              <span>{course.hours} h</span>
+                            </div>
+                            <p className="course-institution">{course.institution}</p>
+                            <p>{course.description}</p>
+                          </article>
+                        ))}
+                      </div>
+                    </details>
+                  )
+                })}
+              </div>
+            ) : <p className="course-empty">Nenhum curso encontrado para essa busca.</p>}
+          </div>
         </section>
 
         <section className="contact-section" id="contato">
-          <div className="contact-pattern" aria-hidden="true" />
           <div className="container contact-layout"><div className="contact-copy reveal"><SectionTitle eyebrow="08 / CONTATO" title={<>Vamos conversar<br /><em>sobre manutenção.</em></>} copy="Entre em contato pelos canais profissionais." light /><a href={`mailto:${profile.email}`} className="button button-primary contact-cta">Enviar e-mail <ArrowRight size={17} /></a></div><div className="contact-details reveal"><a href={`tel:${profile.phoneLink}`} className="contact-row"><span className="contact-icon"><Phone size={18} /></span><span><small>TELEFONE</small><b>{profile.phone}</b></span><ArrowRight size={17} /></a><a href={`mailto:${profile.email}`} className="contact-row"><span className="contact-icon"><Mail size={18} /></span><span><small>E-MAIL</small><b>{profile.email}</b></span><ArrowRight size={17} /></a><a href={profile.linkedin} className="contact-row" target="_blank" rel="noreferrer"><span className="contact-icon"><Linkedin size={18} /></span><span><small>LINKEDIN</small><b>Perfil profissional</b></span><ArrowRight size={17} /></a><div className="contact-row contact-place"><span className="contact-icon"><MapPin size={18} /></span><span><small>LOCALIZAÇÃO</small><b>{profile.location}</b></span></div></div></div>
         </section>
       </main>

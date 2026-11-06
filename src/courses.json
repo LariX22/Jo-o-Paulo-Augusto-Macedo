@@ -1,0 +1,275 @@
+[
+  {
+    "name": "Workshop de Excelência na Gestão da Manutenção",
+    "institution": "Engeteles Academy",
+    "area": "PCM, Gestão e Projetos",
+    "description": "Aborda os desafios da gestão da manutenção, as causas de resultados insuficientes, a importância de um sistema de gestão e os princípios de governança e controle.",
+    "hours": 8
+  },
+  {
+    "name": "Semana da Gestão de Custos de Manutenção",
+    "institution": "Engeteles Academy",
+    "area": "PCM, Gestão e Projetos",
+    "description": "Apresenta fundamentos de custos de manutenção corretiva, preventiva e preditiva, com foco na análise financeira e na justificativa de investimentos.",
+    "hours": 16
+  },
+  {
+    "name": "Workshop de Diagnóstico da Manutenção",
+    "institution": "Engeteles Academy",
+    "area": "PCM, Gestão e Projetos",
+    "description": "Introduz o diagnóstico da situação atual da manutenção e a organização dos processos necessários para estruturar uma gestão mais consistente.",
+    "hours": 6
+  },
+  {
+    "name": "PCM WEEK",
+    "institution": "Engeteles Academy",
+    "area": "PCM, Gestão e Projetos",
+    "description": "Explora planejamento, programação e controle da manutenção, organização das rotinas do PCM e etapas de implantação de processos orientados a resultados.",
+    "hours": 16
+  },
+  {
+    "name": "Analisando a Norma NBR 5462",
+    "institution": "Engeteles Academy",
+    "area": "Confiabilidade e Análise de Falhas",
+    "description": "Estuda a terminologia de falhas, defeitos e panes, a classificação dos tempos de manutenção e os indicadores MTBF, MTTF, MTTR e mantenabilidade.",
+    "hours": 20
+  },
+  {
+    "name": "Série TPM - Auditoria do TPM",
+    "institution": "Engeteles Academy",
+    "area": "TPM e Melhoria Contínua",
+    "description": "Abrange planejamento e execução de auditorias do TPM, definição de critérios, tratamento de não conformidades e elaboração de relatórios de melhoria.",
+    "hours": 20
+  },
+  {
+    "name": "Metodologia A3",
+    "institution": "Engeteles Academy",
+    "area": "Confiabilidade e Análise de Falhas",
+    "description": "Apresenta a solução estruturada de problemas por meio do relatório A3: definição de metas, identificação de causa raiz, plano de ação e verificação dos resultados.",
+    "hours": 20
+  },
+  {
+    "name": "Série TPM - Implantação do TPM",
+    "institution": "Engeteles Academy",
+    "area": "TPM e Melhoria Contínua",
+    "description": "Explora os fundamentos do TPM, os oito pilares, a preparação com 5S, a definição de metas e a organização das etapas e do cronograma de implantação.",
+    "hours": 20
+  },
+  {
+    "name": "Série TPM - Gestão Administrativa",
+    "institution": "Engeteles Academy",
+    "area": "TPM e Melhoria Contínua",
+    "description": "Trata da aplicação do TPM em áreas de apoio, mapeamento de processos, eliminação de desperdícios, produtividade e auditorias administrativas.",
+    "hours": 20
+  },
+  {
+    "name": "Série TPM - Melhorias Específicas",
+    "institution": "Engeteles Academy",
+    "area": "TPM e Melhoria Contínua",
+    "description": "Apresenta a aplicação do PDCA para identificar anomalias, analisar causas, planejar melhorias e consolidar resultados nas operações.",
+    "hours": 20
+  },
+  {
+    "name": "Série TPM - Manutenção Autônoma",
+    "institution": "Engeteles Academy",
+    "area": "TPM e Melhoria Contínua",
+    "description": "Estuda os sete passos da manutenção autônoma, com foco em limpeza, inspeção, padronização, 5S e envolvimento da operação na conservação dos ativos.",
+    "hours": 20
+  },
+  {
+    "name": "Série TPM - Controle Inicial",
+    "institution": "Engeteles Academy",
+    "area": "TPM e Melhoria Contínua",
+    "description": "Aborda mantenabilidade e qualidade desde o projeto e a instalação, considerando o custo do ciclo de vida (LCC) e melhorias nas etapas iniciais dos ativos.",
+    "hours": 20
+  },
+  {
+    "name": "Série TPM - Manutenção da Qualidade",
+    "institution": "Engeteles Academy",
+    "area": "TPM e Melhoria Contínua",
+    "description": "Relaciona falhas de equipamentos a problemas de qualidade, utilizando Pareto, FMEA, análise P-M, Ishikawa e planos de ação para prevenção de defeitos.",
+    "hours": 20
+  },
+  {
+    "name": "Série TPM - Manutenção Planejada",
+    "institution": "Engeteles Academy",
+    "area": "TPM e Melhoria Contínua",
+    "description": "Estuda criticidade e cadastro de ativos, estruturação de planos preventivos e preditivos, controle de informações e avaliação de resultados da manutenção.",
+    "hours": 20
+  },
+  {
+    "name": "Série TPM - Educação e Treinamento",
+    "institution": "Engeteles Academy",
+    "area": "TPM e Melhoria Contínua",
+    "description": "Apresenta diagnóstico de necessidades, matriz de conhecimentos e habilidades, planejamento de treinamentos e capacitação de operadores e mantenedores.",
+    "hours": 20
+  },
+  {
+    "name": "Série TPM - Segurança e Meio Ambiente",
+    "institution": "Engeteles Academy",
+    "area": "TPM e Melhoria Contínua",
+    "description": "Aborda práticas de segurança e ergonomia aplicadas à manutenção, com identificação de riscos, melhorias em equipamentos e prevenção de acidentes.",
+    "hours": 20
+  },
+  {
+    "name": "Análise RAM",
+    "institution": "Engeteles Academy",
+    "area": "Confiabilidade e Análise de Falhas",
+    "description": "Desenvolve os conceitos de confiabilidade, disponibilidade e mantenabilidade por meio de diagramas de blocos, árvores de falhas (FTA) e análises de ativos e processos.",
+    "hours": 20
+  },
+  {
+    "name": "Gestão Avançada da Carteira de Serviços de Manutenção",
+    "institution": "Engeteles Academy",
+    "area": "PCM, Gestão e Projetos",
+    "description": "Explora solicitações e ordens de serviço, priorização pela matriz RIME, gestão do backlog, aprovisionamento de recursos e indicadores da carteira.",
+    "hours": 16
+  },
+  {
+    "name": "GPM - Gestão de Paradas de Manutenção",
+    "institution": "Engeteles Academy",
+    "area": "PCM, Gestão e Projetos",
+    "description": "Aborda planejamento de grandes paradas, escopo, cronograma, caminho crítico, matriz RACI, recursos, contratos, custos e indicadores de execução.",
+    "hours": 40
+  },
+  {
+    "name": "Project Management",
+    "institution": "Engeteles Academy",
+    "area": "PCM, Gestão e Projetos",
+    "description": "Apresenta gestão e liderança de projetos de manutenção, análise de partes interessadas, riscos, qualidade, equipes e gerenciamento de mudanças.",
+    "hours": 20
+  },
+  {
+    "name": "Engenharia de Confiabilidade",
+    "institution": "Engeteles Academy",
+    "area": "Confiabilidade e Análise de Falhas",
+    "description": "Explora Weibull, Poisson, simulação de Monte Carlo, análise RAM, curva da banheira, RCM e custo do ciclo de vida (LCC) aplicados à manutenção.",
+    "hours": 20
+  },
+  {
+    "name": "Válvulas Industriais",
+    "institution": "Mecânica Total Brasil",
+    "area": "Equipamentos e Manutenção Mecânica",
+    "description": "Estuda tipos e aplicações de válvulas industriais, princípios de funcionamento, vedação e cuidados de inspeção e manutenção em sistemas de processo.",
+    "hours": 12
+  },
+  {
+    "name": "Introdução Básica ao RCM",
+    "institution": "Engeteles Academy",
+    "area": "Confiabilidade e Análise de Falhas",
+    "description": "Aborda Manutenção Centrada na Confiabilidade, matriz de criticidade, FMEA, elaboração de planos, indicadores e estruturação de análises de falhas.",
+    "hours": 20
+  },
+  {
+    "name": "Redutores e Caixa de Engrenagem",
+    "institution": "Mecânica Total Brasil",
+    "area": "Equipamentos e Manutenção Mecânica",
+    "description": "Apresenta componentes e tipos de engrenagens, inspeções, vedação, lubrificação, identificação de falhas e cuidados com sistemas de transmissão.",
+    "hours": 12
+  },
+  {
+    "name": "Mancais e Rolamentos",
+    "institution": "Mecânica Total Brasil",
+    "area": "Equipamentos e Manutenção Mecânica",
+    "description": "Estuda tipos de mancais e rolamentos, cargas, montagem, fixação, vedação, lubrificação e cuidados para prevenir falhas prematuras.",
+    "hours": 20
+  },
+  {
+    "name": "Manutenção Centrada na Qualidade",
+    "institution": "Engeteles Academy",
+    "area": "Confiabilidade e Análise de Falhas",
+    "description": "Aplica ferramentas da qualidade à manutenção, como fluxogramas, folhas de verificação, histogramas, Pareto, cartas de controle e Ishikawa.",
+    "hours": 20
+  },
+  {
+    "name": "Acoplamentos Mecânicos",
+    "institution": "Mecânica Total Brasil",
+    "area": "Equipamentos e Manutenção Mecânica",
+    "description": "Aborda tipos e aplicações de acoplamentos, montagem, alinhamento, inspeção e identificação de falhas em conjuntos mecânicos rotativos.",
+    "hours": 12
+  },
+  {
+    "name": "Inspeção e Manutenção em Transportador de Correias",
+    "institution": "Mecânica Total Brasil",
+    "area": "Equipamentos e Manutenção Mecânica",
+    "description": "Estuda componentes de transportadores, roletes, tambores, raspadores, guias de material, desalinhamentos e práticas de inspeção e manutenção.",
+    "hours": 36
+  },
+  {
+    "name": "Inspeção e Manutenção em Bombas Centrífugas",
+    "institution": "Mecânica Total Brasil",
+    "area": "Equipamentos e Manutenção Mecânica",
+    "description": "Apresenta componentes e funcionamento de bombas centrífugas, inspeções, montagem e desmontagem, vedação, desgaste e principais falhas operacionais.",
+    "hours": 36
+  },
+  {
+    "name": "Princípios dos Elementos de Vedação",
+    "institution": "Mecânica Total Brasil",
+    "area": "Equipamentos e Manutenção Mecânica",
+    "description": "Explora aplicações, seleção e inspeção de gaxetas, retentores, juntas e selos mecânicos em equipamentos e sistemas industriais.",
+    "hours": 12
+  },
+  {
+    "name": "Gestão da Produtividade Wrench Time",
+    "institution": "Engeteles Academy",
+    "area": "PCM, Gestão e Projetos",
+    "description": "Aborda estudo de tempos e métodos, produtividade da mão de obra, identificação de atrasos, redução de perdas e melhoria do tempo efetivo de manutenção.",
+    "hours": 20
+  },
+  {
+    "name": "Metodologia F.R.A.C.A.S.",
+    "institution": "Engeteles Academy",
+    "area": "Confiabilidade e Análise de Falhas",
+    "description": "Apresenta o processo de registro, investigação e correção de falhas, com árvore de falhas (FTA), análise de causa raiz e planos de ação 5W2H.",
+    "hours": 20
+  },
+  {
+    "name": "Gestão de Estoque da Manutenção",
+    "institution": "Engeteles Academy",
+    "area": "PCM, Gestão e Projetos",
+    "description": "Estuda inventário e classificação ABC/XYZ, estoques mínimo e máximo, ponto de reposição, endereçamento e controle de custos de materiais.",
+    "hours": 20
+  },
+  {
+    "name": "Formação em Manutenção Prescritiva",
+    "institution": "Engeteles Academy",
+    "area": "Confiabilidade e Análise de Falhas",
+    "description": "Introduz conceitos e níveis da manutenção prescritiva, integrando confiabilidade, análise de riscos e probabilidade de falhas para apoiar decisões.",
+    "hours": 20
+  },
+  {
+    "name": "Analista de Manutenção",
+    "institution": "Engeteles Academy",
+    "area": "PCM, Gestão e Projetos",
+    "description": "Desenvolve análise de MTBF, MTTR, confiabilidade, disponibilidade, backlog e custos, além da estruturação de dashboards de manutenção no Excel.",
+    "hours": 20
+  },
+  {
+    "name": "Planejador de Manutenção",
+    "institution": "Engeteles Academy",
+    "area": "PCM, Gestão e Projetos",
+    "description": "Aborda inventário e criticidade de ativos, FMEA, planos e frequências de manutenção, dimensionamento de recursos e elaboração de procedimentos.",
+    "hours": 20
+  },
+  {
+    "name": "Programador de Manutenção",
+    "institution": "Engeteles Academy",
+    "area": "PCM, Gestão e Projetos",
+    "description": "Estuda programação de ordens de serviço, cronogramas periódicos, priorização pela matriz RIME, gráfico de Gantt, Curva S e planejamento de grandes paradas.",
+    "hours": 20
+  },
+  {
+    "name": "Técnicas de Confiabilidade",
+    "institution": "Mecânica Total Brasil",
+    "area": "Confiabilidade e Análise de Falhas",
+    "description": "Aborda indicadores MTBF e MTTR, curva da banheira, análise de dados de vida (LDA), probabilidade de falhas, degradação e definição de intervenções.",
+    "hours": 10
+  },
+  {
+    "name": "Peneiras Vibratórias",
+    "institution": "Mecânica Total Brasil",
+    "area": "Equipamentos e Manutenção Mecânica",
+    "description": "Introduz componentes, funcionamento, pontos de inspeção e cuidados de manutenção de peneiras vibratórias utilizadas em processos industriais.",
+    "hours": 10
+  }
+]
