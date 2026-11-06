@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import {
   ArrowDown, ArrowDownToLine, ArrowRight, ArrowUp, BarChart3, BriefcaseBusiness,
   Check, ChevronDown, Cog, Cpu, GraduationCap, Layers3, Linkedin, Mail, MapPin,
-  Menu, Phone, ShieldCheck, Sparkles, Wrench, X,
+  Home, Menu, Phone, ShieldCheck, Sparkles, Wrench, X,
   LayoutDashboard, CalendarClock, DraftingCompass, Ruler, Moon, Sun, Search,
 } from 'lucide-react'
 import {
@@ -438,7 +438,9 @@ function App() {
       </main>
 
       <footer className="site-footer"><div className="container footer-inner"><a className="brand footer-brand" href="/" onClick={event => navigate(event, '/')}><span className="brand-mark">JP<span>.</span></span><span className="brand-copy">JOÃO PAULO<span>ENGENHARIA & GESTÃO</span></span></a><p>Currículo profissional · {profile.name}</p><a className="footer-top" href="/" onClick={event => navigate(event, '/')}>VOLTAR AO INÍCIO <ArrowUp size={14} /></a></div></footer>
-      <a className={`back-to-top${showTop ? ' back-to-top-visible' : ''}`} href="/" aria-label="Voltar ao início" onClick={event => navigate(event, '/') }><ArrowUp size={18} /></a>
+      <a className={`back-to-top${page !== '/' || showTop ? ' back-to-top-visible' : ''}${page !== '/' ? ' home-return-link' : ''}`} href="/" aria-label="Voltar ao início" title="Voltar ao início" onClick={event => navigate(event, '/')}>
+        {page === '/' ? <ArrowUp size={18} /> : <><Home size={14} /><span>Início</span></>}
+      </a>
     </>
   )
 }
