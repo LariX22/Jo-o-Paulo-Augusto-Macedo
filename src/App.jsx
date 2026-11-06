@@ -266,7 +266,7 @@ function App() {
 
         <section className="section section-dark" id="destaques">
           <div className="container">
-            <SectionTitle eyebrow="02 / RESULTADOS E PROJETOS" title={<>Escala que exige<br /><em>confiabilidade.</em></>} copy="Marcos e iniciativas descritos na trajetória profissional, em seu contexto operacional." light />
+            <SectionTitle eyebrow="02 / RESULTADOS E PROJETOS" title={<>Escala que exige<br /><em>confiabilidade.</em></>} copy="Indicadores e iniciativas de manutenção, confiabilidade e expansão industrial." light />
             <div className="metrics-grid">
               {highlights.map((item, index) => <article className="metric-card reveal" key={item.value} style={{ '--delay': `${index * 70}ms` }}>
                 <span className="metric-index">0{index + 1}</span><div className={`metric-value${item.label ? '' : ' metric-value-text'}`}>{item.value}</div>{item.label && <h3>{item.label}</h3>}<p>{item.detail}</p><div className="metric-rule" />
@@ -278,13 +278,13 @@ function App() {
                 <div className="project-top"><span>{project.number}</span><ArrowRight size={17} /></div><h3>{project.title}</h3><p>{project.text}</p><ChipList items={project.tags} />
               </article>)}
             </div>
-            <p className="context-note"><ShieldCheck size={14} /> Valores aproximados e resultados apresentados conforme o contexto descrito no currículo master.</p>
+            <p className="context-note"><ShieldCheck size={14} /> Os valores são aproximados quando indicado.</p>
           </div>
         </section>
 
         <section className="section section-experience" id="experiencia">
           <div className="container">
-            <SectionTitle eyebrow="03 / TRAJETÓRIA PROFISSIONAL" title={<>Experiência que<br /><em>constrói confiança.</em></>} copy="Atuação profissional em ordem cronológica, com responsabilidades documentadas." />
+            <SectionTitle eyebrow="03 / TRAJETÓRIA PROFISSIONAL" title={<>Experiência que<br /><em>constrói confiança.</em></>} copy="Cargos, períodos e responsabilidades ao longo da carreira." />
             <div className="timeline">
               {experiences.map((job, index) => <article className="timeline-item reveal" key={`${job.company}-${job.role}`}>
                 <div className="timeline-marker" aria-hidden="true">{roleIcons[index]}</div>
@@ -309,14 +309,14 @@ function App() {
 
         <section className="section section-engineering" id="engenharia">
           <div className="container">
-            <SectionTitle eyebrow="05 / ENGENHARIA & TRANSFORMAÇÃO" title={<>Confiabilidade aplicada<br /><em>à tomada de decisão.</em></>} copy="Atividades e conhecimentos técnicos documentados em Engenharia de Manutenção, análise de falhas, Business Intelligence e transformação digital." />
+            <SectionTitle eyebrow="05 / ENGENHARIA & TRANSFORMAÇÃO" title={<>Confiabilidade aplicada<br /><em>à tomada de decisão.</em></>} copy="Engenharia de Manutenção, análise de falhas, Business Intelligence e transformação digital." />
             <div className="engineering-grid">
               <article className="engineering-card reveal"><div className="engineering-icon"><Wrench size={20} /></div><h3>Engenharia de manutenção e análise de falhas</h3><p>Condução e participação em análises técnicas, pareceres e peritagens envolvendo ativos industriais críticos.</p><ul><li>Análise de históricos, evidências de campo e condições operacionais.</li><li>Investigação de modos e mecanismos de falha.</li><li>Avaliação de alternativas para recuperação ou substituição de componentes e equipamentos.</li><li>Relatórios e pareceres técnicos para suporte a decisões, fornecedores e mitigação de riscos operacionais.</li></ul></article>
               <article className="engineering-card reveal"><div className="engineering-icon"><BarChart3 size={20} /></div><h3>Indicadores e Business Intelligence</h3><p>Desenvolvimento e gestão de soluções de BI aplicadas à Manutenção, com 82 páginas de dashboards e controles gerenciais.</p><div className="bi-coverage"><span>Manutenção</span><span>Custos</span><span>Gestão de pessoas</span><span>Inspeção</span><span>Planejamento</span><span>Serviços</span><span>Programação</span></div><p className="card-footnote">Indicadores: MTBF, MTTR, Disponibilidade Física (DF) e Disponibilidade Física Inerente (DFI).</p></article>
               <article className="engineering-card reveal"><div className="engineering-icon"><Cpu size={20} /></div><h3>Transformação digital e conhecimento</h3><p>Iniciativas digitais voltadas à padronização, capacitação e gestão do conhecimento na Manutenção Mecânica.</p><ul><li>Mais de 90 vídeos, apresentações e conteúdos técnicos.</li><li>Procedimentos técnicos padronizados em biblioteca de consulta e capacitação.</li><li>Uso de Inteligência Artificial em procedimentos, materiais técnicos, treinamentos e análises.</li></ul></article>
               <article className="engineering-card reveal"><div className="engineering-icon"><Sparkles size={20} /></div><h3>Planejamento e gestão orçamentária</h3><p>Elaboração, planejamento e acompanhamento do orçamento da Manutenção Mecânica, com gestão aproximada de R$ 1,4 milhão/mês em OPEX.</p><ul><li>Acompanhamento de custos e análise de desvios orçamentários.</li><li>Interface com Controladoria e áreas responsáveis pela gestão financeira.</li><li>O custo de mão de obra direta dos colaboradores próprios da LGA é gerenciado em estrutura contábil separada e não integra diretamente o centro de custo acompanhado.</li></ul></article>
             </div>
-            <div className="methodology reveal"><div className="methodology-title"><span className="eyebrow"><span />MÉTODOS & COMPETÊNCIAS</span><p>Abordagens e práticas descritas no currículo.</p></div><div className="methods-grid">{methods.map(group => <div className="method-group" key={group.title}><h3>{group.title}</h3><ChipList items={group.items} /></div>)}</div></div>
+            <div className="methodology reveal"><div className="methodology-title"><span className="eyebrow"><span />MÉTODOS & COMPETÊNCIAS</span></div><div className="methods-grid">{methods.map(group => <div className="method-group" key={group.title}><h3>{group.title}</h3><ChipList items={group.items} /></div>)}</div></div>
           </div>
         </section>
 
@@ -330,7 +330,6 @@ function App() {
               <div>
                 <span className="eyebrow"><span />CURSOS COMPLEMENTARES</span>
                 <h2>Cursos por <em>área de atuação.</em></h2>
-                <p>Conteúdo e carga horária conforme informados na planilha.</p>
               </div>
               <label className="course-search">
                 <Search size={17} aria-hidden="true" />
@@ -344,7 +343,7 @@ function App() {
               </label>
             </div>
             <p className="course-results" aria-live="polite">
-              {filteredCourses.length} {filteredCourses.length === 1 ? 'curso' : 'cursos'} · {filteredCourseHours} horas de carga horária informada
+              {filteredCourses.length} {filteredCourses.length === 1 ? 'curso' : 'cursos'} · {filteredCourseHours} horas no total
             </p>
             {courseGroups.length > 0 ? (
               <div className="course-groups">
